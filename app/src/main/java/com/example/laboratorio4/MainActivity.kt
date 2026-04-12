@@ -5,10 +5,10 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn // Nuevo Import
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -22,6 +22,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+            var isChecked by remember { mutableStateOf(true) }
+
             Laboratorio4Theme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     LazyColumn(
@@ -36,7 +38,7 @@ class MainActivity : ComponentActivity() {
                                 color = Color(0xFF1A1A1A),
                                 accentColor = Color(0xFF00E5FF)
                             ) {
-                                Text("Elemento dentro de una Card", color = Color.White)
+                                Text("Ya estás dentro de una Card", color = Color.White)
                             }
                         }
 
@@ -47,7 +49,28 @@ class MainActivity : ComponentActivity() {
                                 color = Color(0xFF1A1A1A),
                                 accentColor = Color(0xFFBB86FC)
                             ) {
-                                Text("Estamos dentro de una lista", color = Color.White)
+                                Text("Estamos listando elementos dinámicamente", color = Color.White)
+                            }
+                        }
+
+                        item {
+                            Tarjeta(
+                                titulo = "Componente 3: Switch",
+                                desc = "Control de estado (On/Off).",
+                                color = Color(0xFF1A1A1A),
+                                accentColor = if (isChecked) Color(0xFF00E5FF) else Color.Gray
+                            ) {
+                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                    Text(
+                                        text = if (isChecked) "Encendido" else "Apagado",
+                                        color = Color.White
+                                    )
+                                    Spacer(Modifier.width(16.dp))
+                                    Switch(
+                                        checked = isChecked,
+                                        onCheckedChange = { isChecked = it }
+                                    )
+                                }
                             }
                         }
                     }
@@ -58,7 +81,14 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Tarjeta(titulo: String, desc: String, color: Color, accentColor: Color, modifier: Modifier = Modifier, contenido: @Composable () -> Unit) {
+fun Tarjeta(
+    titulo: String,
+    desc: String,
+    color: Color,
+    accentColor: Color,
+    modifier: Modifier = Modifier,
+    contenido: @Composable () -> Unit
+) {
     Card(
         modifier = modifier.fillMaxWidth().padding(16.dp),
         shape = RoundedCornerShape(20.dp),
