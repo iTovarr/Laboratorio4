@@ -4,22 +4,18 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.laboratorio4.ui.theme.Laboratorio4Theme
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn // Nuevo Import
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.Alignment
+import com.example.laboratorio4.ui.theme.Laboratorio4Theme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,14 +24,32 @@ class MainActivity : ComponentActivity() {
         setContent {
             Laboratorio4Theme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Tarjeta(
-                        titulo = "Componente 1",
-                        desc = "Contenedor con bordes y color.",
-                        color = Color(0xFF1A1A1A),
-                        accentColor = Color(0xFF00E5FF),
-                        modifier = Modifier.padding(innerPadding)
+                    LazyColumn(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(innerPadding)
                     ) {
-                        Text("Ya estás dentro de una Card", color = Color.White)
+                        item {
+                            Tarjeta(
+                                titulo = "Componente 1: Tarjeta",
+                                desc = "Contenedor con bordes y color.",
+                                color = Color(0xFF1A1A1A),
+                                accentColor = Color(0xFF00E5FF)
+                            ) {
+                                Text("Elemento dentro de una Card", color = Color.White)
+                            }
+                        }
+
+                        item {
+                            Tarjeta(
+                                titulo = "Componente 2: LazyColumn",
+                                desc = "Este contenedor permite scroll eficiente.",
+                                color = Color(0xFF1A1A1A),
+                                accentColor = Color(0xFFBB86FC)
+                            ) {
+                                Text("Estamos dentro de una lista", color = Color.White)
+                            }
+                        }
                     }
                 }
             }
