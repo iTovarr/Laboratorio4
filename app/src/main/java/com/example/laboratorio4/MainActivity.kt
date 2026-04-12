@@ -33,12 +33,12 @@ class MainActivity : ComponentActivity() {
                     ) {
                         item {
                             Tarjeta(
-                                titulo = "Componente 1: Tarjeta",
-                                desc = "Contenedor con bordes y color.",
-                                color = Color(0xFF1A1A1A),
-                                accentColor = Color(0xFF00E5FF)
+                                titulo = "Componente 1: ¡UPGRADE!",
+                                desc = "Estilo actualizado en la rama Upgrading.",
+                                color = Color(0xFF2D2D2D),
+                                accentColor = Color.Magenta
                             ) {
-                                Text("Ya estás dentro de una Card", color = Color.White)
+                                Text("Diseño mejorado", color = Color.White, fontWeight = FontWeight.ExtraBold)
                             }
                         }
 
