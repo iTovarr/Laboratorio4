@@ -55,10 +55,10 @@ class MainActivity : ComponentActivity() {
 
                         item {
                             Tarjeta(
-                                titulo = "Componente 3: Switch",
-                                desc = "Control de estado (On/Off).",
-                                color = Color(0xFF1A1A1A),
-                                accentColor = if (isChecked) Color(0xFF00E5FF) else Color.Gray
+                                titulo = "Componente 3: Switch - Estilo Main",
+                                desc = "Editado desde la rama principal.",
+                                color = Color(0xFF003366),
+                                accentColor = Color.Yellow
                             ) {
                                 Row(verticalAlignment = Alignment.CenterVertically) {
                                     Text(
