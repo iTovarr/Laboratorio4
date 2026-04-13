@@ -104,3 +104,5 @@ fun Tarjeta(
         }
     }
 }
+
+// Modificado por Mafer
