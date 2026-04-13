@@ -104,3 +104,5 @@ fun Tarjeta(
         }
     }
 }
+
+// Step 5: Testing merge conflict resolution between developers
